@@ -8,11 +8,20 @@ from sdrcap.recorders.csv_recorder import CSVRecorder
 from sdrcap.recorders.hdf5_recorder import HDF5Recorder
 
 class TestRecorderMethods(unittest.TestCase):
+    """_summary_
+
+    Args:
+        unittest (_type_): _description_
+    """
 
     def setUp(self):
+        """_summary_
+        """
         self.temp_dir = tempfile.mkdtemp()
 
     def tearDown(self):
+        """_summary_
+        """
         for file in os.listdir(self.temp_dir):
             file_path = os.path.join(self.temp_dir, file)
             if os.path.isfile(file_path):
@@ -20,6 +29,8 @@ class TestRecorderMethods(unittest.TestCase):
         os.rmdir(self.temp_dir)
 
     def test_csv(self):
+        """_summary_
+        """
         csv = CSVRecorder()
         # Use dictionaries with 'real' and 'imaginary' keys
         samples = np.array([1.0 + 0.1j, 2.0 + 0.2j], dtype=np.complex64)
@@ -44,6 +55,8 @@ class TestRecorderMethods(unittest.TestCase):
                 self.assertAlmostEqual(imag_value, sample.imag, places=1)
 
     def test_hdf5(self):
+        """_summary_
+        """
         hdf5 = HDF5Recorder(center_freq=100700000.0, sample_rate=2.4e6, freq_correction=60, gain="auto")
         samples = np.array([(1.0 + 1j * 0.1)], dtype=np.complex64)
         filename = os.path.join(self.temp_dir, 'test.hdf5')

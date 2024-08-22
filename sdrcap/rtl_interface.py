@@ -6,6 +6,14 @@ from sdrcap.recorders.hdf5_recorder import HDF5Recorder
 from sdrcap.recorders.csv_recorder import CSVRecorder
 
 class RTLSDRInterface:
+    """_summary_
+
+    Raises:
+        ValueError: _description_
+
+    Returns:
+        _type_: _description_
+    """
     AVAILABLE_FILETYPES = ("csv", "hdf5")
 
     def __init__(self, sdr=None, center_freq=100700000.0, sample_rate=2.4e6, 
@@ -37,6 +45,11 @@ class RTLSDRInterface:
             self.recorder = CSVRecorder()
 
     def _setup_rtl_sdr(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         sdr = RtlSdr()
         sdr.center_freq = self.center_freq
         sdr.freq_correction = self.freq_correction
@@ -44,6 +57,11 @@ class RTLSDRInterface:
         return sdr
 
     def record_single_sample(self, recording_name=None):
+        """_summary_
+
+        Args:
+            recording_name (_type_, optional): _description_. Defaults to None.
+        """
         if recording_name != None:
             filename = f"{self.output_dir}/{recording_name}-sample_window{self.sample_window}.{self.filetype}"
         else:
@@ -55,6 +73,8 @@ class RTLSDRInterface:
             self.recorder.save(samples=samples, filename=filename)
 
     def record_continuous_sample(self):
+        """_summary_
+        """
         start_record_time = datetime.datetime.now().timestamp()
         if self.sdr is None:
             self.sdr = self._setup_rtl_sdr()

@@ -5,6 +5,11 @@ import numpy as np
 from .recorder import Recorder
 
 class HDF5Recorder(Recorder):
+    """_summary_
+
+    Args:
+        Recorder (_type_): _description_
+    """
     
     def __init__(self, center_freq, sample_rate, freq_correction, gain):
         self.center_freq = center_freq
@@ -13,6 +18,12 @@ class HDF5Recorder(Recorder):
         self.gain = gain
 
     def save(self, samples, filename):
+        """_summary_
+
+        Args:
+            samples (_type_): _description_
+            filename (_type_): _description_
+        """
         current_time = time.time()
         batch_timestamps = [
             datetime.utcfromtimestamp(current_time + (i / len(samples))).strftime('%Y-%m-%d %H:%M:%S.') + 
