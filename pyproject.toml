@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sdrcap"
-version = "0.1.0"
+version = "0.0.1"
 description = ""
 authors = ["chris <kosik.chris.j@gmail.com>"]
 readme = "README.md"
@@ -19,6 +19,7 @@ wheel = "^0.44.0"
 twine = "^5.1.1"
 h5py = "^3.11.0"
 pylint = "^3.2.6"
+toml = "^0.10.2"
 
 
 [build-system]

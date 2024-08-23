@@ -1,6 +1,5 @@
+*/outputs
 *.bin
-*.hdf5
-*.csv
 *.DS_Store
 *.workspace
 __pycache__

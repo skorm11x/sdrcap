@@ -1,3 +1,6 @@
+"""
+    Example showing hdf5 datasets and attributes in CLI
+"""
 import h5py
 
 def print_hdf5_structure(filepath):

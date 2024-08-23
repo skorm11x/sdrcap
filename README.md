@@ -2,7 +2,7 @@
 
 A software defined radio recording library in python.
 
-Organized as a Python Pip Poetry project. Currently only support RTL-SDR with others to be added.
+Organized as a Python Pip Poetry project. Currently only limited support for RTL-SDR with others to be added.
 
 ## Setup
 
@@ -32,12 +32,12 @@ For RTLSDRv4 devices:
 from sdrcap import rtl_interface 
 ```
 
-## Output
+### Output
 
 Currently the output is stored in plain text csv format.
 TODO: Output into a higher data format filetype like hd5
 
-## Dependencies
+### Dependencies
 setuptool is needed for MACOS to import packages 
 
 A environment setting script is set to bind the poetry environments rtlsdrlib but shouldn't be necessary if you are explicitly doing:
@@ -60,4 +60,13 @@ then run:
 sudo -E python ${target}
 ```
 where -E attached to sudo retains the environment variable you sourced from the shell script.
+
+### TODO's
+ For RTLSDR:
+ 0. Support multiple devices
+ 1. Support all rtlsdr.rtlsdr.BaseRtlSdr API options
+ 2. Support asyncio streaming
+ 3. Support/ expand TCP server client functions -> rtlsdr.rtlsdrtcp
+ 4. Add compliant encryption for data at rest, data in air
+ 5. Add on more advanced data transformation, interpolation, sniffing and analysis features
 
