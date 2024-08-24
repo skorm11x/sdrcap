@@ -1,9 +1,11 @@
 [tool.poetry]
 name = "sdrcap"
 version = "0.0.1"
-description = ""
+description = "A software defined radio capture library in python"
+license = "GPLV3"
 authors = ["chris <kosik.chris.j@gmail.com>"]
 readme = "README.md"
+keywords = ["sdr", "recording"]
 
 [tool.poetry.dependencies]
 python = "^3.12"

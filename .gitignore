@@ -1,4 +1,7 @@
 */outputs
+/dist
+*.tar.gz
+*.whl
 *.bin
 *.DS_Store
 *.workspace
