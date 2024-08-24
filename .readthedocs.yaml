@@ -7,6 +7,5 @@ build:
 
 python:
   install:
-    - pip install pdoc
-    - pdoc --html -o doc sdrcap
+    - requirements: doc/requirements.txt
 
