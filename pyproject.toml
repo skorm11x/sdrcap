@@ -3,9 +3,18 @@ name = "sdrcap"
 version = "0.0.1"
 description = "A software defined radio capture library in python"
 license = "GPLV3"
-authors = ["chris <kosik.chris.j@gmail.com>"]
+authors = ["Chris Kosik <kosik.chris.j@gmail.com>"]
 readme = "README.md"
 keywords = ["sdr", "recording"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Defined Radio :: Signal Processing",
+]
+repository = "https://github.com/skorm11x/sdrcap"
 
 [tool.poetry.dependencies]
 python = "^3.12"
