@@ -38,4 +38,3 @@ jobs:
 
     - name: Run pylint
       run: poetry run pylint $(git ls-files '*.py')
-Changes Explained:
