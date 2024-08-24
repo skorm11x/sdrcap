@@ -9,7 +9,7 @@ class TestBasicPackage(unittest.TestCase):
 
     def test_pkg_version(self):
         """Check if the pyproject version matches package version"""
-        with open("../pyproject.toml", "r") as f:
+        with open("../pyproject.toml", "r", encoding="UTF-8") as f:
             pyproject_data = toml.load(f)
 
         toml_version = pyproject_data["tool"]["poetry"]["version"]

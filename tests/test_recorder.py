@@ -33,7 +33,7 @@ class TestRecorderMethods(unittest.TestCase):
 
         self.assertTrue(os.path.isfile(filename))
 
-        with open(filename, "r", "utf-8") as file:
+        with open(filename, "r", encoding="UTF-8") as file:
             content = file.read()
             self.assertIn("Real Value,Imaginary Value,TimeStamp", content)
 
