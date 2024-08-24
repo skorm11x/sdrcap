@@ -1,6 +1,14 @@
 # SDRCAP
-
 A software defined radio recording library in python.
+
+[![PyPI](https://img.shields.io/pypi/v/sdrcap)](https://pypi.org/project/sdrcap)
+[![Documentation Status](https://readthedocs.org/projects/sdrcap/badge/?version=latest)](https://sdrcap.readthedocs.io/en/latest/?badge=latest)
+
+<!--![PyPI - Downloads](https://img.shields.io/pypi/dm/sdrcap) -->
+
+
+# Description
+A simple python interface for robust recording, analysis, and cyber features for a range of software defined radio's. 
 
 Organized as a Python Pip Poetry project. Currently only limited support for RTL-SDR via pyrtlsdr package with others to be added.
 
