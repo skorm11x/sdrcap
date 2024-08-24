@@ -9,4 +9,5 @@ build:
   image: python:3.12
   commands:
     - pip install pdoc
-    - pdoc sdrcap --html -o doc
+    - pdoc --html -o doc sdrcap
+
