@@ -4,8 +4,6 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
-import argparse
-from sdrcap import rtl_interface
 
 df_active = pd.read_csv("active/disp0.csv", sep="[,]", engine="python")
 df_none = pd.read_csv("nothing/disp0.csv", sep="[,]", engine="python")

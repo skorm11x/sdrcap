@@ -1,3 +1,4 @@
+""" Collection of tests for package setup"""
 import unittest
 import toml
 import sdrcap

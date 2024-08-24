@@ -1,15 +1,23 @@
 """
     Example showing hdf5 datasets and attributes in CLI
 """
+
 import h5py
 
+
 def print_hdf5_structure(filepath):
-    with h5py.File(filepath, 'r') as f:
+    """Print out basic information on HDF5 file.
+
+    Args:
+        filepath (str): string of location of hdf5 file.
+    """
+    with h5py.File(filepath, "r") as f:
         print("Root Group Attributes:")
         for attr_name, attr_value in f.attrs.items():
             print(f"  {attr_name}: {attr_value}")
 
         print("\nDatasets:")
+
         def print_datasets(name, obj):
             if isinstance(obj, h5py.Dataset):
                 print(f"Dataset: {name}")
@@ -20,6 +28,7 @@ def print_hdf5_structure(filepath):
 
         f.visititems(print_datasets)
 
+
 if __name__ == "__main__":
-    filepath = 'outputs/test.hdf5'
-    print_hdf5_structure(filepath)
+    FILEPATH = "outputs/test.hdf5"
+    print_hdf5_structure(FILEPATH)

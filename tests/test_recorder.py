@@ -1,8 +1,9 @@
+""" Collection of tests for supported file type outputs """
 import unittest
 import os
 import tempfile
-from datetime import datetime
 import numpy as np
+import pandas as pd
 import h5py
 from sdrcap.recorders.csv_recorder import CSVRecorder
 from sdrcap.recorders.hdf5_recorder import HDF5Recorder
@@ -32,11 +33,9 @@ class TestRecorderMethods(unittest.TestCase):
 
         self.assertTrue(os.path.isfile(filename))
 
-        with open(filename, "r") as file:
+        with open(filename, "r", "utf-8") as file:
             content = file.read()
             self.assertIn("Real Value,Imaginary Value,TimeStamp", content)
-
-            import pandas as pd
 
             df = pd.read_csv(filename)
             self.assertEqual(len(df), len(samples))
