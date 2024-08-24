@@ -2,19 +2,18 @@
 
 A software defined radio recording library in python.
 
-Organized as a Python Pip Poetry project. Currently only limited support for RTL-SDR with others to be added.
+Organized as a Python Pip Poetry project. Currently only limited support for RTL-SDR via pyrtlsdr package with others to be added.
 
 ## Setup
 
 ### Installing
 
-Obtain pyproject.toml & poetry.lock
-in root of project run
+1. Obtain pyproject.toml & poetry.lock
+2. in root of project, run
 ```
 poetry install
 ```
 Both toml and lock files are currently version controlled
-TODO: understand best strategies for application developers having their own lock files and just providing a toml.
 
 ### Running
 
@@ -34,8 +33,7 @@ from sdrcap import rtl_interface
 
 ### Output
 
-Currently the output is stored in plain text csv format.
-TODO: Output into a higher data format filetype like hd5
+Currently the recording output supports <b>CSV</b> and <b>HDF5</b> filetypes.
 
 ### Dependencies
 setuptool is needed for MACOS to import packages 
@@ -69,4 +67,16 @@ where -E attached to sudo retains the environment variable you sourced from the 
  3. Support/ expand TCP server client functions -> rtlsdr.rtlsdrtcp
  4. Add compliant encryption for data at rest, data in air
  5. Add on more advanced data transformation, interpolation, sniffing and analysis features
+
+ In general:
+ 0. Solid support for receive only functionality cross SDR's
+ 1. GNU Radio integration/ experimentation
+ 2. GUI client app?
+
+ SDR devices to add (not in order):
+ 0. 
+ 1. USRP B200mini: https://www.ettus.com/all-products/usrp-b200mini/
+ 2. USRP B205mini-i: 
+ 3. hackRF One: https://www.amazon.com/dp/B0BKH7Z2NJ/
+ 4. ADALM Pluto
 
