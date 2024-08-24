@@ -1,10 +1,5 @@
 version: 2
 
-python:
-  version: 3.12
-  install:
-    - requirements: doc/requirements.txt
-
 build:
   os: ubuntu-22.04
   image: python:3.12
