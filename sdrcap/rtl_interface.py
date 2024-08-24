@@ -51,10 +51,11 @@ import time
 from rtlsdr import RtlSdr
 from sdrcap.recorders.hdf5_recorder import HDF5Recorder
 from sdrcap.recorders.csv_recorder import CSVRecorder
+from .hardware_interface import HardwareInterface
 from sdrcap import AVAILABLE_FILETYPES
 
 
-class RTLSDRInterface:
+class RTLSDRInterface(HardwareInterface):
     """Class for PYRTLSDR library to interface with hardware RTL SDR device."""
 
     def __init__(self, sdr=None, **options):
@@ -76,18 +77,9 @@ class RTLSDRInterface:
         }
         self.options = {**defaults, **options}
 
-        self.center_freq = self.options["center_freq"]
-        self.sample_rate = self.options["sample_rate"]
-        self.freq_correction = self.options["freq_correction"]
-        self.gain = self.options["gain"]
-        self.record_delay = self.options["record_delay"]
-        self.sample_window = self.options["sample_window"]
-        self.filetype = self.options["filetype"]
-        self.output_dir = self.options["output_dir"]
-
-        if self.filetype not in AVAILABLE_FILETYPES:
+        if self.options["filetype"] not in AVAILABLE_FILETYPES:
             raise ValueError(
-                f"Invalid file type: {self.filetype}."
+                f"Invalid file type: {self.options["filetype"]}."
                 f"Must be one of {AVAILABLE_FILETYPES}."
             )
 
@@ -96,29 +88,29 @@ class RTLSDRInterface:
         else:
             self.sdr = sdr
 
-        os.makedirs(self.output_dir, exist_ok=True)
+        os.makedirs(self.options["output_dir"], exist_ok=True)
 
-        if self.filetype == "hdf5":
-            self.recorder = HDF5Recorder(
-                center_freq=self.center_freq,
-                sample_rate=self.sample_rate,
-                freq_correction=self.freq_correction,
-                gain=self.gain,
+        if self.options["filetype"] == "hdf5":
+            self.options["recorder"] = HDF5Recorder(
+                center_freq=self.options["center_freq"],
+                sample_rate=self.options["sample_rate"],
+                freq_correction=self.options["freq_correction"],
+                gain=self.options["gain"],
             )
-        elif self.filetype == "csv":
-            self.recorder = CSVRecorder()
+        elif self.options["filetype"] == "csv":
+            self.options["recorder"] = CSVRecorder()
         else:
             raise ValueError(
-                f"Invalid file type: {self.filetype}."
+                f"Invalid file type: {self.options["filetype"]}."
                 f"Must be one of {AVAILABLE_FILETYPES}."
             )
 
     def _setup_rtl_sdr(self):
         """Initializes the RTL SDR with radio parameters."""
         sdr = RtlSdr()
-        sdr.center_freq = self.center_freq
-        sdr.freq_correction = self.freq_correction
-        sdr.gain = self.gain
+        sdr.center_freq = self.options["center_freq"]
+        sdr.freq_correction = self.options["freq_correction"]
+        sdr.gain = self.options["gain"]
         return sdr
 
     def record_single_sample(self, recording_name=None):
@@ -129,24 +121,25 @@ class RTLSDRInterface:
               Specifies filename alongside recording information. Defaults to None.
         """
         if recording_name is not None:
-            filename = (f"{self.output_dir}/{recording_name}"
-            f"-sample_window{self.sample_window}.{self.filetype}")
+            filename = (f"{self.options["output_dir"]}/{recording_name}"
+            f"-sample_window{self.options["sample_window"]}.{self.options["filetype"]}")
         else:
             filename = (
-                f"{self.output_dir}/sample_window{self.sample_window}.{self.filetype}"
+                f"{self.options["output_dir"]}/"
+                f"sample_window{self.options["sample_window"]}.{self.options["filetype"]}"
             )
         if self.sdr is None:
             self.sdr = self._setup_rtl_sdr()
         else:
-            samples = self.sdr.read_samples(self.sample_window)
-            self.recorder.save(samples=samples, filename=filename)
+            samples = self.sdr.read_samples(self.options["sample_window"])
+            self.options["recorder"].save(samples=samples, filename=filename)
 
     def start_recording_continuous_samples(self):
         """Starts a continuous, synchronous, stream of samples. Establishes recording start time."""
         start_record_time = datetime.datetime.now().timestamp()
-        self.recorder.start_recording(start_record_time)
+        self.options["recorder"].start_recording(start_record_time)
         if self.sdr is None:
             self.sdr = self._setup_rtl_sdr()
         while True:
             self.record_single_sample(recording_name=start_record_time)
-            time.sleep(int(self.record_delay))
+            time.sleep(int(self.options["record_delay"]))
