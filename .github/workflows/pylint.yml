@@ -39,4 +39,4 @@ jobs:
     - name: Run pylint
       continue-on-error: true
       run: |
-      poetry run pylint $(git ls-files '*.py')
+        poetry run pylint $(git ls-files '*.py')
