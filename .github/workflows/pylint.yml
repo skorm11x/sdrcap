@@ -21,7 +21,7 @@ jobs:
       with:
         version: latest
         virtualenvs-create: true
-        virtualenvs-in-project: true  # This matches in-project setups
+        virtualenvs-in-project: true
 
     - name: Cache Poetry dependencies
       uses: actions/cache@v3
