@@ -43,7 +43,10 @@ from sdrcap import rtl_interface
 Currently the recording output supports <b>CSV</b> and <b>HDF5</b> filetypes.
 
 ### Dependencies
+
+#### OSX
 setuptool is needed for MACOS to import packages 
+
 
 A environment setting script is set to bind the poetry environments rtlsdrlib but shouldn't be necessary if you are explicitly doing:
 
@@ -66,7 +69,12 @@ sudo -E python ${target}
 ```
 where -E attached to sudo retains the environment variable you sourced from the shell script.
 
-### TODO's
+#### Windows
+Windows likely needs the proper drivers installed to interface with the SDR. Install Zadig:
+https://zadig.akeo.ie/
+and the WinUSB with the device plugged in so windows can recognize the device. 
+
+### TODO's (not in order)
  For RTLSDR:
  0. Support multiple devices
  1. Support all rtlsdr.rtlsdr.BaseRtlSdr API options
@@ -78,7 +86,12 @@ where -E attached to sudo retains the environment variable you sourced from the 
  In general:
  0. Solid support for receive only functionality cross SDR's
  1. GNU Radio integration/ experimentation
- 2. GUI client app?
+ 2. <b>GUI client app -> in progress via CesiumJS web client</b>
+ 3. Update recorder class to utilize strong interface schema including geospatial info, support other schema's
+ 4. Handle device discovery errors
+ 5. Test coverage
+ 6. Add base targets (known signal producing entities) for translation
+ 7. Add various known radio bands (radios) to ease cap processes
 
  SDR devices to add (not in order):
  0. 

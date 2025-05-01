@@ -49,6 +49,7 @@ import os
 import datetime
 import time
 from rtlsdr import RtlSdr
+from rtlsdr.rtlsdr import LibUSBError 
 # from sdrcap.recorders.hdf5_recorder import HDF5Recorder
 from sdrcap.recorders.csv_recorder import CSVRecorder
 from sdrcap import AVAILABLE_FILETYPES
