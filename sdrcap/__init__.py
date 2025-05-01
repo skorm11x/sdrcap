@@ -8,4 +8,4 @@
 """
 __version__ = "0.0.1"
 AVAILABLE_FILETYPES = ("csv", "hdf5")
-AVAILABLE_SDR_DEVICES = ("rtl")
+AVAILABLE_SDR_DEVICES = "rtl"

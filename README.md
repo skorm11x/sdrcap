@@ -21,7 +21,6 @@ Organized as a Python Pip Poetry project. Currently only limited support for RTL
 ```
 poetry install
 ```
-Both toml and lock files are currently version controlled
 
 ### Running
 

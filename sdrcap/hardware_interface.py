@@ -2,7 +2,7 @@
     interface regardless of driver details
 """
 
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 
 class HardwareInterface:
     """Abstract class defining methods for each sdr interface to implement"""

@@ -49,10 +49,11 @@ import os
 import datetime
 import time
 from rtlsdr import RtlSdr
+from rtlsdr.rtlsdr import LibUSBError
 from sdrcap.recorders.hdf5_recorder import HDF5Recorder
 from sdrcap.recorders.csv_recorder import CSVRecorder
-from .hardware_interface import HardwareInterface
 from sdrcap import AVAILABLE_FILETYPES
+from .hardware_interface import HardwareInterface
 
 
 class RTLSDRInterface(HardwareInterface):
@@ -107,11 +108,15 @@ class RTLSDRInterface(HardwareInterface):
 
     def _setup_rtl_sdr(self):
         """Initializes the RTL SDR with radio parameters."""
-        sdr = RtlSdr()
-        sdr.center_freq = self.options["center_freq"]
-        sdr.freq_correction = self.options["freq_correction"]
-        sdr.gain = self.options["gain"]
-        return sdr
+        try:
+            sdr = RtlSdr()
+            sdr.center_freq = self.options["center_freq"]
+            sdr.freq_correction = self.options["freq_correction"]
+            sdr.gain = self.options["gain"]
+            return sdr
+        except LibUSBError as e:
+            print(e)
+            return None
 
     def record_single_sample(self, recording_name=None):
         """Records a single sample, based off the SDR sample size and calls recorder.
