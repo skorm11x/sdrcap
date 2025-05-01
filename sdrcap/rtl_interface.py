@@ -49,7 +49,7 @@ import os
 import datetime
 import time
 from rtlsdr import RtlSdr
-from sdrcap.recorders.hdf5_recorder import HDF5Recorder
+# from sdrcap.recorders.hdf5_recorder import HDF5Recorder
 from sdrcap.recorders.csv_recorder import CSVRecorder
 from .hardware_interface import HardwareInterface
 from sdrcap import AVAILABLE_FILETYPES
@@ -90,14 +90,14 @@ class RTLSDRInterface(HardwareInterface):
 
         os.makedirs(self.options["output_dir"], exist_ok=True)
 
-        if self.options["filetype"] == "hdf5":
-            self.options["recorder"] = HDF5Recorder(
-                center_freq=self.options["center_freq"],
-                sample_rate=self.options["sample_rate"],
-                freq_correction=self.options["freq_correction"],
-                gain=self.options["gain"],
-            )
-        elif self.options["filetype"] == "csv":
+        # if self.options["filetype"] == "hdf5":
+        #     self.options["recorder"] = HDF5Recorder(
+        #         center_freq=self.options["center_freq"],
+        #         sample_rate=self.options["sample_rate"],
+        #         freq_correction=self.options["freq_correction"],
+        #         gain=self.options["gain"],
+        #     )
+        if self.options["filetype"] == "csv":
             self.options["recorder"] = CSVRecorder()
         else:
             raise ValueError(

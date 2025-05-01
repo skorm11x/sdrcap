@@ -4,9 +4,15 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from pathlib import Path
 
-df_active = pd.read_csv("active/disp0.csv", sep="[,]", engine="python")
-df_none = pd.read_csv("nothing/disp0.csv", sep="[,]", engine="python")
+base_dir = Path(__file__).parent
+
+active_path = base_dir / "active" / "disp0.csv"
+nothing_path = base_dir / "nothing" / "disp0.csv"
+
+df_active = pd.read_csv(active_path, sep="[,]", engine="python")
+df_none = pd.read_csv(nothing_path, sep="[,]", engine="python")
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
@@ -31,4 +37,7 @@ ax1.scatter(
     label="none",
 )
 plt.legend(loc="upper left")
-plt.savefig("active_vs_ambient")
+
+save_path = Path(base_dir) / "active_vs_ambient.png"
+
+plt.savefig(save_path)
